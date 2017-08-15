@@ -5,5 +5,9 @@
 
   roles:
     - tigr1991.php71
-    - tigr1991.mysql
-    - configure.mysql
+    - {
+        role: "bennojoy.mysql",
+        mysql_db: [{name: project}],
+        mysql_users: [{name: web, pass: password, host: "%",priv: "*.*:ALL"}],
+        mysql_repl_role: "none"
+       }
