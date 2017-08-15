@@ -7,7 +7,7 @@
     - vars/mysql.yml
 
   roles:
-    - tigr1991.php71
+    - Dalee.install-php7
     - geerlingguy.mysql
     - symfony
 

@@ -1,5 +1,8 @@
 ---
 
+- name: Install composer
+  apt: name=composer
+
 - name: Install Symfony
   command: "curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony"
 
