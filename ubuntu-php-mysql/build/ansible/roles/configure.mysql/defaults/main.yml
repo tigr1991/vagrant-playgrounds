@@ -1,0 +1,12 @@
+---
+
+mysql_root_db_pass: password
+
+mysql_db:
+     - name: project
+
+mysql_users:
+     - name: web
+       pass: password
+       host: "%"
+       priv: "*.*:ALL"

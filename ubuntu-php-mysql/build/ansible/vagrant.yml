@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+
+  roles:
+    - tigr1991.php71
+    - tigr1991.mysql
+    - configure.mysql
