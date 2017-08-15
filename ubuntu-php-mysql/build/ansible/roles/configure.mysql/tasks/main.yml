@@ -7,7 +7,6 @@
   with_items:
     - "python-pip"
     - "python-selinux"
-    - "mysql-server"
     - "python-mysqldb"
 
 - name: Install the Python MySQLB module
