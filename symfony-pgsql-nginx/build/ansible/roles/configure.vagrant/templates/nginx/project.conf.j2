@@ -1,0 +1,17 @@
+# emulate two additional (non-standard) CGI/SSI environment variables named SCRIPT_URL and SCRIPT_URI
+# http://httpd.apache.org/docs/2.0/rewrite/rewrite_intro.html#EnvVar
+
+
+server {
+	listen 8080 default_server;
+	root "{{ project_root }}/project/web";
+    index index.php app.php;
+
+    location ~* \.php$ {
+        fastcgi_index   index.php;
+        fastcgi_pass   unix:/run/php/php7.1-fpm.sock;
+        include         fastcgi_params;
+        fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+        fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
+    }
+}

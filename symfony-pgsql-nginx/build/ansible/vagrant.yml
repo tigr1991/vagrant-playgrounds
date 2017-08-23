@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+
+  vars_files:
+    - vars/postgresql.yml
+
+  roles:
+    - Dalee.install-php7
+    - tigr1991.nginx
+    - ANXS.postgresql
+    - symfony
+    - configure.vagrant
+

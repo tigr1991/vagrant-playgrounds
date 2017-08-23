@@ -1,0 +1,13 @@
+#
+# handled by ansible
+#
+if [ -f ~/.environment.rc ]; then
+	. ~/.environment.rc
+fi
+
+{% if php.xdebug.enable %}
+export XDEBUG_CONFIG="idekey={{ php.xdebug.ide_key }}"
+export PHP_IDE_CONFIG="serverName={{ php.xdebug.server_name }}"
+{% endif %}
+
+cd {{ project_root }}
