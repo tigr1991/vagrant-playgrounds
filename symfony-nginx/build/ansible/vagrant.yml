@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+
+
+  roles:
+    - Dalee.install-php7
+    - tigr1991.nginx
+    - symfony
+    - configure.vagrant
+

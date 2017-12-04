@@ -1,0 +1,18 @@
+timeout: 40 # in seconds
+
+nginx:
+  fastcgi_read_timeout: "{{ timeout }}s" # 1d for a day
+
+php:
+  max_execution_time: "{{ timeout }}" # 0 for off
+  fpm:
+    request_terminate_timeout: "{{ timeout }}" # 0 for off
+  xdebug:
+    enable: no
+    connect_back: no # Connect to HTTP client IP, if remote_host is not working
+    remote_host: "{{ ansible_default_ipv4.gateway }}" # == `sudo route -n | grep UG | awk '{ print $2 }'`
+    remote_port: 9000
+    profiler_output_dir: "{{ project_root }}"
+    # params for cli debug
+    ide_key: PHPSTORM
+    server_name: vagrant

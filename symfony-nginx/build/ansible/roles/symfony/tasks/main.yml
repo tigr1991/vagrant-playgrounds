@@ -1,0 +1,10 @@
+---
+
+- name: Install composer
+  apt: name=composer
+
+- name: Install Symfony
+  command: "curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony"
+
+- name: Install Symfony chmod
+  command: "chmod a+x /usr/local/bin/symfony"

@@ -1,0 +1,8 @@
+#
+- name: profile - setup env
+  template:
+    src: "bash_profile.j2"
+    dest: "/home/ubuntu/.bash_profile"
+    mode: 0600
+    owner: ubuntu
+    group: ubuntu
