@@ -1,18 +1,4 @@
-key DHCP_UPDATER {
-    algorithm HMAC-MD5.SIG-ALG.REG.INT;
-    secret "CuJOVszcGH6RMsnT0kheHQ==";
-};
-
-// зона прямого просмотра
-zone "dom"{
-    type master;
-    file "/var/lib/bind/db.dom";
-    allow-update { key DHCP_UPDATER; };
-};
-
-// зона обратного просмотра
-zone "1.168.192.in-addr.arpa"{
-    type master;
-    file "/var/lib/bind/db.192";
-    allow-update { key DHCP_UPDATER; };
-};
+zone "com" {
+      type master;
+      file "/etc/bind/db.com";
+  };

@@ -12,6 +12,15 @@
 #- name: Insert record about key
 #  lineinfile: dest=/etc/bind/named.conf insertafter="^bar" line='include "/etc/bind/rndc.key";'
 
+
+- name: Добавляем сохранение логов
+  template:
+    src: "named.conf"
+    dest: "/etc/bind/named.conf"
+    mode: 0644
+    owner: "root"
+    group: "bind"
+
 - name: Настраиваем DNS сервер Bind9
   template:
     src: "named.conf.options"
@@ -20,36 +29,45 @@
     owner: "root"
     group: "bind"
 
-- name: Рестарт Bind9
-  service:
-    name: "bind9"
-    state: "restarted"
+
+#- name: Настраиваем прямой зоны
+#  template:
+#    src: "db.dom"
+#    dest: "/var/lib/bind/db.dom"
+#    mode: 0644
+#    owner: "root"
+#    group: "bind"
 
 - name: Настраиваем прямой зоны
   template:
-    src: "db.dom"
-    dest: "/var/lib/bind/db.dom"
+    src: "db.com"
+    dest: "/etc/bind/db.com"
     mode: 0644
     owner: "root"
     group: "bind"
-
-- name: Проверка корректности
-  command: named-checkconf
 
 #"{{ ipsirstpart }}"
 
-- name: Настраиваем обратной зоны
-  template:
-    src: "db.192.dom"
-    dest: "/var/lib/bind/db.192.dom"
-    mode: 0644
-    owner: "root"
-    group: "bind"
+#- name: Настраиваем обратной зоны
+#  template:
+#    src: "db.192.dom"
+#    dest: "/var/lib/bind/db.192.dom"
+#    mode: 0644
+#    owner: "root"
+#    group: "bind"
 
 - name: Настройки зон в файле конфигурации bind9
   template:
     src: "named.conf.local"
     dest: "/etc/bind/named.conf.local"
+    mode: 0644
+    owner: "root"
+    group: "bind"
+
+- name: Внесение изменений в файл локального разрешения имен resolv.conf
+  template:
+    src: "resolv.conf"
+    dest: "/etc/resolv.conf"
     mode: 0644
     owner: "root"
     group: "bind"

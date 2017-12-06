@@ -5,6 +5,6 @@
 
   roles:
     - bind9
-#    - Dalee.install-php7
-#    - tigr1991.nginx
-#    - config.nginx
+    - Dalee.install-php7
+    - tigr1991.nginx
+    - config.nginx

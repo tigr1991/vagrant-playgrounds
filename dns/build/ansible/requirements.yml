@@ -1,2 +1,2 @@
-#- src: Dalee.install-php7
-#- src: tigr1991.nginx
+- src: Dalee.install-php7
+- src: tigr1991.nginx
