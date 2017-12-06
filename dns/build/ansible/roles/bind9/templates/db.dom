@@ -1,0 +1,16 @@
+$ORIGIN .
+$TTL 604800 ; 1 week
+dom IN SOA ns.dom. root.ns.dom. (
+                201605277 ;serial
+                604800 ;refresh (1 week)
+                86400 ;retry (1 day)
+                2419200 ;expire (4 weeks)
+                604800 ;minimum (1 week)
+                )
+
+@ IN NS ns.dom.
+@ IN A 192.168.1.43
+
+$ORIGIN dom.
+$TTL 604800 ; 1 week
+ns IN A 192.168.1.43

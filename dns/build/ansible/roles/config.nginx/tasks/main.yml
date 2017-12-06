@@ -1,0 +1,20 @@
+---
+
+- name: nginx - main configuration file
+  template:
+    src: "nginx/project.conf.j2"
+    dest: "/etc/nginx/sites-enabled/ansible"
+    mode: 0644
+    owner: "root"
+    group: "root"
+
+- name: nginx - restart (forced)
+  service:
+    name: "nginx"
+    state: "restarted"
+
+
+
+
+
+

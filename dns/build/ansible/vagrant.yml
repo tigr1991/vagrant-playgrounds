@@ -2,3 +2,9 @@
 - hosts: localhost
   connection: local
   become: yes
+
+  roles:
+    - bind9
+#    - Dalee.install-php7
+#    - tigr1991.nginx
+#    - config.nginx

@@ -1,0 +1,68 @@
+---
+
+- name: Устанавливаем Bind9
+  apt: name=bind9
+
+#- name: Генерация ключей
+#  command: dnssec-keygen -a HMAC-MD5 -b 128 -r /dev/urandom -n USER DHCP_UPDATER
+
+#- name: Печать ключа
+#  command: cat Kdhcp_updater.*.private|grep Key
+
+#- name: Insert record about key
+#  lineinfile: dest=/etc/bind/named.conf insertafter="^bar" line='include "/etc/bind/rndc.key";'
+
+- name: Настраиваем DNS сервер Bind9
+  template:
+    src: "named.conf.options"
+    dest: "/etc/bind/named.conf.options"
+    mode: 0644
+    owner: "root"
+    group: "bind"
+
+- name: Рестарт Bind9
+  service:
+    name: "bind9"
+    state: "restarted"
+
+- name: Настраиваем прямой зоны
+  template:
+    src: "db.dom"
+    dest: "/var/lib/bind/db.dom"
+    mode: 0644
+    owner: "root"
+    group: "bind"
+
+- name: Проверка корректности
+  command: named-checkconf
+
+#"{{ ipsirstpart }}"
+
+- name: Настраиваем обратной зоны
+  template:
+    src: "db.192.dom"
+    dest: "/var/lib/bind/db.192.dom"
+    mode: 0644
+    owner: "root"
+    group: "bind"
+
+- name: Настройки зон в файле конфигурации bind9
+  template:
+    src: "named.conf.local"
+    dest: "/etc/bind/named.conf.local"
+    mode: 0644
+    owner: "root"
+    group: "bind"
+
+- name: Проверка корректности
+  command: named-checkconf
+
+- name: Рестарт Bind9
+  service:
+    name: "bind9"
+    state: "restarted"
+
+
+
+
+
